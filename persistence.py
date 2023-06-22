@@ -1,14 +1,14 @@
-import openpyxl
+cache = {}
 
-def save_to_excel(ids):
+def get_cache(key):
+    if key in cache:
+        print(f"LA INFORMACIÓN CON CLAVE {key} SE RECUPERÓ DEL CACHÉ")
+        return cache[key]
+    
+    print(f"NO SE ENCONTRÓ NADA CON LA CLAVE {key} EN EL CACHÉ")
+    return None
 
-    workbook = openpyxl.Workbook()
 
-    sheet = workbook.active
-
-    sheet['A1'] = 'ID de Propiedad'
-
-    for index, id in enumerate(ids, start=2):
-        sheet[f'A{index}'] = id
-
-    workbook.save('ids_propiedades.xlsx')
+def set_cache(key, value):
+    cache[key] = value
+    print(f"INFORMACIÓN CON CLAVE {key} GUARDADA EN CACHÉ")
